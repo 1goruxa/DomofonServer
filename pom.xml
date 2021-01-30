@@ -90,38 +90,48 @@
 
     <build>
         <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+
+                            <mainClass>main.Main</mainClass>
+                            <!--
+                            <additionalProperties>
+                                <encoding.source>8</encoding.source>
+                                <encoding.reporting>8</encoding.reporting>
+                                <java.source>8</java.source>
+                                <java.target>8</java.target>
+                            </additionalProperties>-->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--                    -->
+
+            <!--  Так работало по дефолту. Блок выше добавлен из инструкции по деплою на хероку-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.5</version>
+            </plugin>
         </plugins>
-
-
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>build-info</goal>
-                            </goals>
-                            <configuration>
-                                <additionalProperties>
-                                    <encoding.source>${project.build.sourceEncoding}</encoding.source>
-                                    <encoding.reporting>${project.reporting.outputEncoding}</encoding.reporting>
-                                    <java.source>${maven.compiler.source}</java.source>
-                                    <java.target>${maven.compiler.target}</java.target>
-                                </additionalProperties>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
 
 
     </build>
