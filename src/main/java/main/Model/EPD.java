@@ -3,20 +3,16 @@ package main.Model;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name="devices")
-public class Device {
+@Entity
+public class EPD {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
-    private String mac;
+    private String description;
 
-    @ManyToOne(targetEntity=User.class,optional=false)
-    @JoinColumn(name="user_id", referencedColumnName = "id")
-    private User user;
-
-    @OneToMany(targetEntity = EPD2device.class, mappedBy = "device")
+    @OneToMany(targetEntity = EPD2device.class, mappedBy = "epd")
     private List<EPD2device> epd2DeviceList;
 
     public List<EPD2device> getEpd2DeviceList() {
@@ -26,15 +22,6 @@ public class Device {
     public void setEpd2DeviceList(List<EPD2device> epd2DeviceList) {
         this.epd2DeviceList = epd2DeviceList;
     }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
 
     public int getId() {
         return id;
@@ -52,11 +39,11 @@ public class Device {
         this.name = name;
     }
 
-    public String getMac() {
-        return mac;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMac(String mac) {
-        this.mac = mac;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

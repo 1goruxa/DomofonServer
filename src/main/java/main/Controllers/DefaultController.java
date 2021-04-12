@@ -15,4 +15,10 @@ public class DefaultController {
         return "index";
     }
 
+    @RequestMapping("/profile")
+    public String  profile(Model model){
+        return "profile";
+
+    }
+
 }

@@ -1,17 +1,26 @@
 package main.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
-@Entity
+@Entity(name = "family")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
+
+    @OneToMany(targetEntity = User.class, mappedBy = "group", fetch = FetchType.EAGER)
+    private Set<User> userSet;
+
+//    public Set<User> getUserSet() {
+//        return userSet;
+//    }
+//
+//    public void setUserSet(Set<User> userSet) {
+//        this.userSet = userSet;
+//    }
 
     public int getId() {
         return id;

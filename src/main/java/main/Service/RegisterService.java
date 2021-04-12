@@ -2,8 +2,9 @@ package main.Service;
 
 import main.Api.Request.RegisterRequest;
 import main.Api.Response.RegisterResponse;
+import main.Model.Group;
 import main.Model.User;
-import main.UserRepository;
+import main.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,11 @@ public class RegisterService {
 
         User user = new User();
         user.setName(registerRequest.getName());
-        user.setMac(registerRequest.getMac());
+        user.setPassword(registerRequest.getPassword());
+
+        Group group = new Group();
+        group.setId(0);
+        user.setGroup(group);
 
         userRepository.save(user);
 

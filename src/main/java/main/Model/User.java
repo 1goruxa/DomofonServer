@@ -1,6 +1,7 @@
 package main.Model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name="users")
 public class User {
@@ -10,10 +11,42 @@ public class User {
 
     private String name;
 
-    @Column(name = "group_id")
-    private int groupId;
+    @ManyToOne(targetEntity = Group.class, optional=false)
+    @JoinColumn(name="group_id")
+    private Group group;
+
     private int balance;
-    private String mac;
+    private String password;
+
+    @Column(name = "is_admin")
+    private int isAdmin;
+
+    @OneToMany(mappedBy = "user", fetch=FetchType.EAGER)
+    private Set<Device> deviceSet;
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
+
+    public Set<Device> getDeviceSet() {
+        return deviceSet;
+    }
+
+    public void setDeviceSet(Set<Device> deviceSet) {
+        this.deviceSet = deviceSet;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -31,14 +64,6 @@ public class User {
         this.name = name;
     }
 
-    public int getGroupId() {
-        return groupId;
-    }
-
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
-    }
-
     public int getBalance() {
         return balance;
     }
@@ -47,11 +72,11 @@ public class User {
         this.balance = balance;
     }
 
-    public String getMac() {
-        return mac;
+    public Group getGroup() {
+        return group;
     }
 
-    public void setMac(String mac) {
-        this.mac = mac;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }

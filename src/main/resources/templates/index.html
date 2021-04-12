@@ -10,25 +10,92 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="register.js"></script>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="register.js"></script>
 <body>
 
 
-<h1>Регистрация устройства</h1>
-<p>Заполните форму ниже</p>
-<p>Вам понадобится MAC адрес вашего устроства. Его можно найти
-    <a href="http://www.drom.ru">тут</a>
-</p>
+<div id="register_form" hidden>
+    <h1>Регистрация нового пользователя</h1>
+    <p>Заполните форму ниже</p>
 
-ИМЯ  <input type="text" id="name" size="20">
+    <input type="text" id="name" placeholder="Имя" size="20">
 <br>
-MAC <input type="text" id="mac" size="20">
+    <input type="password" id="password" placeholder="Пароль" size="20">
 <br>
-<input type="button" id="send" value="SEND">
+    <input type="password" id="password_confirm" placeholder="Повторите пароль" size="20">
+<br>
+    <input type="button" id="send" value="Зарегистрировать">
+<br>
+Уже зарегистрированы? <input type="button" id="login_open_form" value="Войти">
+</div>
 
 
+<div id="login_form" >
+<h1>Вход в личный кабинет</h1>
+<input id="name_login" onkeyup="checkParams()" placeholder="Имя">
+<br>
+<input type="password" id="password_login" onkeyup="checkParams()" placeholder="Пароль">
+<br>
+<input type="button" id="button_login" value="Войти" disabled>
+<br>
+<input type="button" id="open_register" value="Зарегистрироваться">
+</div>
+
+
+<div id="profile_form" hidden>
+    <h1>Личный кабинет</h1>
+    Пользователь:
+    <div id="user_info"></div>
+
+    Доступные устройства:
+    <div id="user_devices"></div>
+
+    <input type="button" id="add_device" value="Добавить">
+    <input type="button" id="del_device" value="Удалить">
+    <br>
+    Баланс:
+    <div id="money"></div>
+    <input type="button" id="add_money" value="Пополнить">
+
+     <!--Далее для админов-->
+    <div id="is_admin" hidden>
+        <h5>Панель администратора</h5>
+        Управление
+        <br>
+        <input type = "button" id="manage_epd" value="EPD">
+        <input type = "button" id="manage_group" value="Группы">
+        <input type = "button" id="manage_user" value="Пользователи">
+        <br>
+        Дополнительные функции
+        <!--    Вызов генератора QR отсюда-->
+        <br>
+        <input type = "button" id="qrMake" value="Создать QR">
+        <br>
+    </div>
+</div>
+
+<div id="addDevice_form" hidden>
+    <input type="button" id="backFromAddDevice" value="Назад">
+    <br>
+</div>
+<div id="manage_epd_form" hidden>
+    <input type="button" id="backFromManageEpd" value="Назад">
+    <br>
+</div>
+<div id="manage_group_form" hidden>
+    <input type="button" id="backFromManageGroup" value="Назад">
+    <br>
+</div>
+<div id="manage_user_form" hidden>
+    <div id="manage-user_list"></div>
+    <br>
+    <input type="button" id="newManageUser" value="Новый">
+    <input type="button" id="deleteManageUser" value="Удалить">
+    <input type="button" id="backFromManageUser" value="Назад">
+    <br>
+</div>
 
 </body>
 </html>
